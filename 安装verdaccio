@@ -1,0 +1,43 @@
+### 1.verdaccio是什么
+Verdaccio 是一个 Node.js创建的轻量的私有npm proxy registry
+
+### 2.verdaccio中文官网地址
+https://verdaccio.org/docs/zh-CN
+
+### 3.安装node
+
+### 4.安装verdaccio
+npm install -g verdaccio
+
+### 5.安装PM2
+npm install -g  pm2
+
+### 6.修改verdaccio的配置文件
+echo "listen: 0.0.0.0:4873" >> /root/.config/verdaccio/config.yaml
+
+### 7.重启verdaccio
+pm2 restart verdaccio
+pm2 restart all
+
+### 8.浏览器访问
+浏览器访问：IP:4873
+
+### 9.如果开启防火墙，要打开端口
+firewall-cmd --add-port=4873/tcp --permanent
+firewall-cmd --reload
+
+=================一下是客户端操作部分===============================
+### 10.安装cgr
+npm i cgr -g
+
+### 11.添加私库(test私库别名)
+cgr add test http://IP:4873
+
+### 12.应用私库
+cgr use test
+
+### 13.查看私库
+cgr ls
+
+### 14.删除私库
+cgr del test
